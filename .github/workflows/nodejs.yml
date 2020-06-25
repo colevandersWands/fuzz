@@ -30,7 +30,7 @@ jobs:
 
     - uses: stefanzweifel/git-auto-commit-action@v4.1.6
       with:
-        commit_message: automated registration
+        commit_message: automated reporting
 
         # Optional name of the branch the commit should be pushed to
         # Required if Action is used in Workflow listening to the `pull_request` event.
