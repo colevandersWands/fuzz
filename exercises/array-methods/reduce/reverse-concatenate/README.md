@@ -3,11 +3,7 @@
 > - args: ok 
 > - passing: 100% 
 > - starter: file 
-<<<<<<< HEAD
-> - 6/25/2020, 12:18:14 PM
-=======
-> - 6/25/2020, 10:10:17 AM
->>>>>>> 5fd2bd12cb65a8c5bf0e078881942d9277b0708a
+> - 6/25/2020, 10:19:54 AM
 <!-- END REPORT -->
 
 # Reverse-Concatenate
