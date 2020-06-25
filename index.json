@@ -23,6 +23,7 @@
               "report": {
                 "solution": true,
                 "args": true,
+                "starter": "none",
                 "passing": 100
               }
             },
@@ -32,6 +33,7 @@
               "report": {
                 "solution": true,
                 "args": true,
+                "starter": "none",
                 "passing": 100
               }
             }
@@ -73,5 +75,5 @@
     "path": "/exercises",
     "defaultFunctionName": "fuzzed"
   },
-  "lastBuild": "2020-06-25T10:00:02.403Z"
+  "lastBuild": "2020-06-25T10:01:49.611Z"
 }
