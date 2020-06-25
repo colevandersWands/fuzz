@@ -16,17 +16,17 @@ export default (() => {
   // Promise.all this
   Exercise.prototype.load = async function () {
     try {
-      Object.assign(this, (await import(`.${this.path.abs}/index.js`)).default);
+      Object.assign(this, (await import(`${window.origin}${this.path.abs}/index.js`)).default);
       if (!this.report.starter) {
         this.starter = `const ${this.name || 'fuzzed'} = `;
       } else if (this.report.starter === 'file') {
-        const starterRes = await fetch(`.${this.path.abs}/starter.js`);
+        const starterRes = await fetch(`${window.origin}${this.path.abs}/starter.js`);
         this.starter = await starterRes.text();
       } else if (this.report.starter === 'snippet') {
         // it's already attached as a string property
       }
       this.monacoModel.setValue(this.starter);
-      const readmeRes = await fetch(`.${this.path.abs}/README.md`);
+      const readmeRes = await fetch(`${window.origin}${this.path.abs}/README.md`);
       const readmePreClean = await readmeRes.text();
       this.readme = readmePreClean.replace(/(<!--[ \t]*BEGIN REPORT[ \t]*-->)([^;]*)(<!--[ \t]*END REPORT[ \t]*-->)/, '');
       this.loaded = true;

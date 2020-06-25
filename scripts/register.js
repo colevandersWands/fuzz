@@ -79,9 +79,7 @@ const register = async function (dirPath) {
 
       if (subDirReport.solution && subDirReport.args) {
         const tests = testGenerator({ solution: exercise.solution, args: exercise.args, length: 100 });
-        if (subPath.includes('concatenate')) {
-          console.log(JSON.stringify(tests, null, '  '));
-        }
+
         const score = percentPassing(exercise.solution, tests);
         subDirReport.passing = score;
 
