@@ -1,0 +1,77 @@
+{
+  "path": "/exercises",
+  "dirs": [
+    {
+      "path": "/about-fuzz",
+      "isExercise": true,
+      "report": {
+        "solution": true,
+        "args": true,
+        "starter": "file",
+        "passing": 100
+      }
+    },
+    {
+      "path": "/array-methods",
+      "dirs": [
+        {
+          "path": "/filter",
+          "dirs": [
+            {
+              "path": "/even-numbers",
+              "isExercise": true,
+              "report": {
+                "solution": true,
+                "args": true,
+                "passing": 100
+              }
+            },
+            {
+              "path": "/passing-objects",
+              "isExercise": true,
+              "report": {
+                "solution": true,
+                "args": true,
+                "passing": 100
+              }
+            }
+          ],
+          "report": {}
+        },
+        {
+          "path": "/reduce",
+          "dirs": [
+            {
+              "path": "/reverse-concatenate",
+              "isExercise": true,
+              "report": {
+                "solution": true,
+                "args": true,
+                "starter": "file",
+                "passing": 100
+              }
+            },
+            {
+              "path": "/sum-even-numbers",
+              "isExercise": true,
+              "report": {
+                "solution": true,
+                "args": true,
+                "starter": "file",
+                "passing": 100
+              }
+            }
+          ],
+          "report": {}
+        }
+      ],
+      "report": {}
+    }
+  ],
+  "config": {
+    "title": "Fuzz",
+    "path": "/exercises",
+    "defaultFunctionName": "fuzzed"
+  },
+  "lastBuild": "2020-06-25T09:54:43.837Z"
+}
