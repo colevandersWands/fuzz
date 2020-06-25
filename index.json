@@ -75,5 +75,9 @@
     "path": "/exercises",
     "defaultFunctionName": "fuzzed"
   },
+<<<<<<< HEAD
   "lastBuild": "2020-06-25T13:09:52.683Z"
+=======
+  "lastBuild": "2020-06-25T10:19:54.549Z"
+>>>>>>> 6c99bca5d5535700f117ec4382ba5c1c7f9a3e94
 }
