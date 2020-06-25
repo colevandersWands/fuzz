@@ -156,7 +156,18 @@ export default class LiveStudy {
     };
     container.appendChild(testCode);
 
-
+    const jsTutorButton = document.createElement('button');
+    jsTutorButton.innerHTML = 'debug in JS Tutor';
+    jsTutorButton.onclick = () => {
+      const encodedJST = encodeURIComponent(editor.getValue());
+      const sanitizedJST = encodedJST
+        .replace(/\(/g, '%28')
+        .replace(/\)/g, '%29')
+        .replace(/%09/g, '%20%20');
+      const jsTutorURL = "http://www.pythontutor.com/live.html#code=" + sanitizedJST + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
+      window.open(jsTutorURL, '_blank');
+    };
+    container.appendChild(jsTutorButton);
 
     const formatButton = document.createElement('button');
     formatButton.innerHTML = 'format code';
