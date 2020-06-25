@@ -72,7 +72,7 @@ const register = async function (dirPath) {
             ? 'snippet'
             : hasStarterFile
               ? 'file'
-              : undefined,
+              : 'none',
           // name: typeof exercise.name === 'string' ? exercise.name : undefined,
         };
       }
