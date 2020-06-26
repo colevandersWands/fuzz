@@ -101,18 +101,18 @@ export default class LiveStudy {
     }
   }
 
-  runTests() {
+  runTests(inDebugger) {
     const source = this.loopGuard.active
       ? LiveStudy.insertLoopGuards(this.active.monacoModel.getValue(), this.loopGuard.max)
       : this.active.monacoModel.getValue();
-
     const testified = source + '\n\n'
       + 'const tests = testGenerator({\n'
       + '  args: this.active.args,\n'
       + '  solution: this.active.solution,\n'
       + '  length: 10\n'
       + '});\n\n'
-      + `test(${this.active.name || 'fuzzed'}, tests);`;
+      + `test(${this.active.name || 'fuzzed'}, tests${inDebugger ? ', true' : ''});`;
+
     try {
       eval(testified)
     } catch (err) {
@@ -148,7 +148,7 @@ export default class LiveStudy {
 
 
     const testCode = document.createElement('button');
-    testCode.style = 'padding-right: .5em; width: 20%;';
+    // testCode.style = 'padding-right: .5em; width: 20%;';
     testCode.innerHTML = 'run tests';
     testCode.onclick = () => {
       console.clear();
@@ -156,8 +156,18 @@ export default class LiveStudy {
     };
     container.appendChild(testCode);
 
+    const inDebugger = document.createElement('button');
+    // testCode.style = 'padding-right: .5em; width: 20%;';
+    inDebugger.innerHTML = 'in debugger';
+    inDebugger.onclick = () => {
+      console.clear();
+      this.runTests(true);
+    };
+    container.appendChild(inDebugger);
+
+
     const jsTutorButton = document.createElement('button');
-    jsTutorButton.innerHTML = 'debug in JS Tutor';
+    jsTutorButton.innerHTML = 'in JS Tutor';
     jsTutorButton.onclick = () => {
       const encodedJST = encodeURIComponent(editor.getValue());
       const sanitizedJST = encodedJST

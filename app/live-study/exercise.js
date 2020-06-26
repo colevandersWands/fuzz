@@ -17,7 +17,6 @@ export default (() => {
   Exercise.prototype.load = async function () {
     try {
       Object.assign(this, (await import(`${window.location.origin}${window.location.pathname}${this.path.abs.slice(1)}/index.js`)).default);
-      debugger;
       if (this.report.starter === 'none') {
         this.starter = `const ${this.name || 'fuzzed'} = `;
       } else if (this.report.starter === 'file') {
