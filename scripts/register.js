@@ -1,13 +1,9 @@
-// require native modules
-// const fs = require("fs");
-// const path = require("path");
-import fs, { read } from "fs";
+import fs from "fs";
 import path from "path";
 import { fileURLToPath } from 'url';
 
 import percentPassing from '../lib/percent-pass.js';
 import testGenerator from '../lib/test-generator.js';
-import { dir } from "console";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -65,7 +61,7 @@ const register = async function (dirPath) {
 
       if (exercise) {
         subDirReport = {
-          // readme: hasReadme,
+          readme: hasReadme,
           solution: exercise.solution && typeof exercise.solution === 'function',
           args: exercise.args && typeof exercise.args === 'function',
           starter: (exercise.starter && typeof exercise.starter === 'string')
@@ -73,7 +69,6 @@ const register = async function (dirPath) {
             : hasStarterFile
               ? 'file'
               : 'none',
-          // name: typeof exercise.name === 'string' ? exercise.name : undefined,
         };
       }
 
@@ -107,6 +102,11 @@ const register = async function (dirPath) {
           : `${reportReplacer}\n\n${readme}`;
 
         fs.writeFileSync(readmePath, newReadme);
+      }
+
+
+      if (hasIndex) {
+        fs.writeFileSync(path.normalize(path.join(subPath, 'report.json')), JSON.stringify(subDirReport, null, '  '));
       }
 
       // recursively register the path if it's a directory
@@ -154,5 +154,36 @@ register(EXERCISES_DIR)
     // write the file
     const stringifiedReg = JSON.stringify(registered, null, '  ');
     fs.writeFileSync(path.normalize(path.join('index.json')), stringifiedReg);
+
+    // re-render the /exercises table of contents
+
+    const tableOfContents = (virDir, path, indent) => {
+      indent = indent || '';
+      path = path || '';
+      const dirList = virDir.dirs
+        ? virDir.dirs
+          .map(subDir => {
+            const subIndex = tableOfContents(subDir, path + subDir.path, indent + '  ');
+            const reviewPath = path + subDir.path;
+            return `${indent}- [${subDir.path}](.${reviewPath})`
+              + (subDir.isExercise ? ` - ${typeof subDir.report.passing == 'number' ? subDir.report.passing + '%' : 'N/A'}` : '')
+              + (subIndex ? '\n' + subIndex : '\n');
+          })
+          .reduce((list, li) => list + li, '')
+        : '';
+      return dirList;
+    }
+
+    const newToc = tableOfContents(registered);
+    const tocRegex = /(<!--[ \t]*BEGIN TOC[ \t]*-->)([^;]*)(<!--[ \t]*END TOC[ \t]*-->)/;
+    const tocReplacer = `<!-- BEGIN TOC -->\n${newToc}\n<!-- END TOC -->`;
+    const readmePath = path.normalize(path.join(EXERCISES_DIR, 'README.md'));
+    const oldReadme = fs.existsSync(readmePath)
+      ? fs.readFileSync(readmePath, 'utf-8')
+      : '';
+    const newReadme = oldReadme.match(tocRegex)
+      ? oldReadme.replace(tocRegex, tocReplacer)
+      : `${oldReadme}\n\n${tocReplacer}`;
+    fs.writeFileSync(readmePath, newReadme);
   })
   .catch(err => console.error(err));

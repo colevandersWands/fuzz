@@ -41,13 +41,13 @@ const it = (() => {
       };
     };
 
-    let thrownException = null;
+    let thrown = null;
     let threw = false;
     try {
       testFunction();
-    } catch (thrown) {
+    } catch (exception) {
       threw = true;
-      thrownException = thrown;
+      thrown = exception;
     };
 
     Object.assign(console, consoleBackup);
@@ -60,18 +60,17 @@ const it = (() => {
         itIsCalled = false;
         return;
       }
-
       console.groupCollapsed(`%c√ PASS: ${description}`, 'font-weight: bold; color: green;');
     }
     for (let call of consoleCalls) {
       console[call.method](...call.args);
     };
     if (threw) {
-      const toLog = (thrownException && typeof thrownException.name === 'string' && thrownException.name.includes('AssertionError'))
-        ? '✖ ' + thrownException.message
-        : 'uncaught';
-      console.groupCollapsed(`%c${toLog}:`, 'font-weight: bold; color:red;');
-      console.log(thrownException);
+      const toLog = (thrown && typeof thrown.name === 'string' && thrown.name.includes('AssertionError'))
+        ? thrown.message
+        : `uncaught${thrown && thrown.name ? ` ${thrown.name}` : ''}${thrown && thrown.message ? `: ${thrown.message}` : ''}`;
+      console.groupCollapsed(`%c${toLog}`, 'font-weight: bold; color:red;');
+      console.log(thrown);
       console.groupEnd();
     }
     console.groupEnd();

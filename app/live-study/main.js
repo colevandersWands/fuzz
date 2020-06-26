@@ -183,8 +183,11 @@ export default class LiveStudy {
 
   renderDescription() {
     if (!this.active) { return };
-
-    this.descriptionContainer.innerHTML = marked(this.active.readme);
+    if (this.active.readme) {
+      this.descriptionContainer.innerHTML = marked(this.active.readme);
+    } else {
+      this.descriptionContainer.innerHTML = '';
+    }
   }
 
   render() {

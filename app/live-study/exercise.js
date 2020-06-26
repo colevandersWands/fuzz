@@ -17,7 +17,8 @@ export default (() => {
   Exercise.prototype.load = async function () {
     try {
       Object.assign(this, (await import(`${window.location.origin}${window.location.pathname}${this.path.abs.slice(1)}/index.js`)).default);
-      if (!this.report.starter) {
+      debugger;
+      if (this.report.starter === 'none') {
         this.starter = `const ${this.name || 'fuzzed'} = `;
       } else if (this.report.starter === 'file') {
         const starterRes = await fetch(`.${this.path.abs}/starter.js`);
@@ -26,9 +27,11 @@ export default (() => {
         // it's already attached as a string property
       }
       this.monacoModel.setValue(this.starter);
-      const readmeRes = await fetch(`.${this.path.abs}/README.md`);
-      const readmePreClean = await readmeRes.text();
-      this.readme = readmePreClean.replace(/(<!--[ \t]*BEGIN REPORT[ \t]*-->)([^;]*)(<!--[ \t]*END REPORT[ \t]*-->)/, '');
+      if (this.report.readme) {
+        const readmeRes = await fetch(`.${this.path.abs}/README.md`);
+        const readmePreClean = await readmeRes.text();
+        this.readme = readmePreClean.replace(/(<!--[ \t]*BEGIN REPORT[ \t]*-->)([^;]*)(<!--[ \t]*END REPORT[ \t]*-->)/, '');
+      }
       this.loaded = true;
       return this;
     } catch (err) {
