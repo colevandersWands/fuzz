@@ -1,8 +1,8 @@
 <!-- BEGIN REPORT -->
-> - solution: ok 
-> - args: ok 
-> - passing: 100% 
-> - starter: file 
+> - solution: ok
+> - args: ok
+> - passing: 100%
+> - starter: file
 > - 6/26/2020, 1:01:40 PM
 <!-- END REPORT -->
 
@@ -23,6 +23,6 @@ There are a few very good reasons to practice fuzz testing from early on in your
 - You can test your functions against hundreds of more test cases than you ever could with manually written tests
 - It's not just for industry! Fuzz testing can be [very helpful while you're still learning](https://dl.acm.org/doi/10.1145/2876034.2876050)
 
-To study these exercises you"ll need to have your console open, all test results will be logged there.
+To study these exercises you'll need to have your console open, all test results will be logged there.
 
 Enjoy!
