@@ -30,17 +30,6 @@
               }
             },
             {
-              "path": "/no-readme",
-              "isExercise": true,
-              "report": {
-                "readme": false,
-                "solution": true,
-                "args": true,
-                "starter": "snippet",
-                "passing": 100
-              }
-            },
-            {
               "path": "/passing-objects",
               "isExercise": true,
               "report": {
@@ -57,17 +46,6 @@
         {
           "path": "/reduce",
           "dirs": [
-            {
-              "path": "/no-readme",
-              "isExercise": true,
-              "report": {
-                "readme": false,
-                "solution": true,
-                "args": true,
-                "starter": "none",
-                "passing": 100
-              }
-            },
             {
               "path": "/reverse-concatenate",
               "isExercise": true,
@@ -102,9 +80,5 @@
     "path": "/exercises",
     "defaultFunctionName": "fuzzed"
   },
-<<<<<<< HEAD
-  "lastBuild": "2020-06-26T10:50:20.372Z"
-=======
-  "lastBuild": "2020-06-25T13:12:18.640Z"
->>>>>>> fc9fcdbdb387022779d889b20158c7f42dff85d1
+  "lastBuild": "2020-06-26T10:54:16.379Z"
 }
