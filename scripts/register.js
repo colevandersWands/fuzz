@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from 'url';
 
 import percentPassing from '../lib/percent-pass.js';
-import testGenerator from '../lib/test-generator.js';
+import generateTests from '../lib/test-generator.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -73,7 +73,7 @@ const register = async function (dirPath) {
       }
 
       if (subDirReport.solution && subDirReport.args) {
-        const tests = testGenerator({ solution: exercise.solution, args: exercise.args, length: 100 });
+        const tests = generateTests({ solution: exercise.solution, args: exercise.args, length: 100 });
 
         const score = percentPassing(exercise.solution, tests);
         subDirReport.passing = score;

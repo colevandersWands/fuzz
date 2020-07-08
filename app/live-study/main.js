@@ -29,9 +29,7 @@ export default class LiveStudy {
   static populate(data, path) {
     const copy = Object.assign({}, data);
     copy.isExercise = data.isExercise;
-    // if (data.isExercise && data.report.passing === 100) {
     copy.exercise = new Exercise(data.path, path, data.report);
-    // }
     if (data.dirs) {
       copy.populated = [];
       for (let subDir of data.dirs) {
@@ -105,13 +103,14 @@ export default class LiveStudy {
     const source = this.loopGuard.active
       ? LiveStudy.insertLoopGuards(this.active.monacoModel.getValue(), this.loopGuard.max)
       : this.active.monacoModel.getValue();
-    const testified = source + '\n\n'
-      + 'const tests = testGenerator({\n'
+    const testified = (inDebugger ? 'debugger // added by Fuzz\n\n' : '')
+      + source + '\n\n'
+      + 'const tests = generateTests({\n'
       + '  args: this.active.args,\n'
       + '  solution: this.active.solution,\n'
       + '  length: 10\n'
       + '});\n\n'
-      + `test(${this.active.name || 'fuzzed'}, tests${inDebugger ? ', true' : ''});`;
+      + `test(fuzzed, tests);`;
 
     try {
       eval(testified)
@@ -150,10 +149,7 @@ export default class LiveStudy {
     const testCode = document.createElement('button');
     // testCode.style = 'padding-right: .5em; width: 20%;';
     testCode.innerHTML = 'run tests';
-    testCode.onclick = () => {
-      console.clear();
-      this.runTests();
-    };
+    testCode.onclick = () => this.runTests();
     container.appendChild(testCode);
 
     const inDebugger = document.createElement('button');

@@ -13,8 +13,12 @@
   <script src='./app/utils/chai.js'> </script>
   <script src='./app/utils/test-runner.js'> </script>
   <script type='module'>
-    import testGenerator from './lib/test-generator.js';
-    window.testGenerator = testGenerator;
+    import generateTests from './lib/test-generator.js';
+    window.generateTests = generateTests;
+  </script>
+  <script type='module'>
+    import cloneDeep from './lib/cloneDeep.js';
+    window.cloneDeep = cloneDeep;
   </script>
   <script type='module' src='./app/init.js'> </script>
 

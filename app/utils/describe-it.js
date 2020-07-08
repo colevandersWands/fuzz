@@ -70,7 +70,7 @@ const it = (() => {
         ? thrown.message
         : `uncaught${thrown && thrown.name ? ` ${thrown.name}` : ''}${thrown && thrown.message ? `: ${thrown.message}` : ''}`;
       console.groupCollapsed(`%c${toLog}`, 'font-weight: bold; color:red;');
-      console.log(thrown);
+      console.error(thrown);
       console.groupEnd();
     }
     console.groupEnd();

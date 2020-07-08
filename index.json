@@ -65,7 +65,7 @@
                 "solution": true,
                 "args": true,
                 "starter": "file",
-                "passing": 100
+                "passing": 96
               }
             }
           ],
@@ -77,12 +77,7 @@
   ],
   "config": {
     "title": "Fuzz",
-    "path": "/exercises",
-    "defaultFunctionName": "fuzzed"
+    "path": "/exercises"
   },
-<<<<<<< HEAD
-  "lastBuild": "2020-06-26T11:01:40.598Z"
-=======
-  "lastBuild": "2020-06-26T10:54:16.379Z"
->>>>>>> f6b09f986517e1c6083fbbf6e9d3f52deb1899cd
+  "lastBuild": "2020-07-08T18:02:06.496Z"
 }

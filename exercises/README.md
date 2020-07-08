@@ -8,6 +8,6 @@
     - [/passing-objects](./array-methods/filter/passing-objects) - 100%
   - [/reduce](./array-methods/reduce)
     - [/reverse-concatenate](./array-methods/reduce/reverse-concatenate) - 100%
-    - [/sum-even-numbers](./array-methods/reduce/sum-even-numbers) - 100%
+    - [/sum-even-numbers](./array-methods/reduce/sum-even-numbers) - 96%
 
 <!-- END TOC -->
